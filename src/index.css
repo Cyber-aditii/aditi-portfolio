@@ -1,69 +1,81 @@
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,301,701,300,501,401,901,400,2,1&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Using CDN for Satoshi as local file fallback issues were reported */
-@font-face {
-  font-family: 'Satoshi';
-  src: url('https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,301,701,300,501,401,901,400,2,1&display=swap'); 
-}
-
 body {
-  @apply bg-black text-white font-satoshi overflow-x-hidden;
+  @apply text-white font-satoshi overflow-x-hidden;
+  background-color: #050510;
 }
 
 h1, h2, h3, h4, h5, h6 {
   @apply font-syne;
 }
 
+/* Cyan viewport glow border — matching live site aesthetic */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  border: 1.5px solid rgba(0, 210, 255, 0.15);
+  pointer-events: none;
+  z-index: 9999;
+  box-shadow:
+    inset 0 0 80px rgba(0, 210, 255, 0.03),
+    0 0 0 1px rgba(0, 210, 255, 0.05);
+}
+
 /* Animations */
 @keyframes slide-horizontal {
-  0% { transform: translateX(0); }
+  0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
 @keyframes marquee {
-  0% { transform: translateX(0); }
+  0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
-@keyframes music-bar-1 { 0%,100%{height:4px} 50%{height:20px} }
-@keyframes music-bar-2 { 0%,100%{height:8px} 50%{height:28px} }
-@keyframes music-bar-3 { 0%,100%{height:12px} 50%{height:24px} }
+@keyframes music-bar-1 { 0%,100% { height: 4px  } 50% { height: 20px } }
+@keyframes music-bar-2 { 0%,100% { height: 8px  } 50% { height: 28px } }
+@keyframes music-bar-3 { 0%,100% { height: 12px } 50% { height: 24px } }
 
 @keyframes spin-slow {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
-/* Scrollbar Hide */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+/* Custom scrollbar */
+::-webkit-scrollbar         { width: 4px; }
+::-webkit-scrollbar-track   { background: #050510; }
+::-webkit-scrollbar-thumb   { background: rgba(0,210,255,0.28); border-radius: 2px; }
+
+/* Scrollbar hide utility */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Lenis smooth scroll */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth          { scroll-behavior: auto; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped         { overflow: hidden; }
+.lenis.lenis-scrolling iframe { pointer-events: none; }
+
+/* Laser Scanner Animation */
+@keyframes scan {
+  0% { top: 0%; }
+  50% { top: calc(100% - 4px); }
+  100% { top: 0%; }
 }
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+.animate-scan {
+  animation: scan 3s ease-in-out infinite;
 }
 
-/* Lenis */
-html.lenis, html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
+/* Disable default cursor when interactive CyberCursor is active (desktop only) */
+@media (hover: hover) and (pointer: fine) {
+  html.custom-cursor-active, html.custom-cursor-active * {
+    cursor: none !important;
+  }
 }
