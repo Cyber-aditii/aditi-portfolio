@@ -377,7 +377,7 @@ const EducationCard = () => (
       </div>
       <div>
         <p className="text-white text-sm font-semibold">Senior Secondary (Class XII)</p>
-        <p className="text-white/60 text-[11px]">Maheshwari Girls Sr. Sec. School | Commerce with IP (84%)</p>
+        <p className="text-white/60 text-[11px]">Maheshwari Girls Sr. Sec. School | Commerce with IP (88.20%)</p>
       </div>
       <div className="pt-1 flex gap-2 flex-wrap">
         <span className="bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 px-2 py-0.5 rounded text-[10px] font-mono">NVIDIA DLI – Cybersecurity</span>
