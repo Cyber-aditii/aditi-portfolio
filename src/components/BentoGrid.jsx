@@ -373,7 +373,7 @@ const EducationCard = () => (
     <div className="space-y-3 relative z-10 text-xs">
       <div>
         <p className="text-white text-sm font-semibold">Bachelor of Computer Applications</p>
-        <p className="text-white/60 text-[11px]">Maharani College, Jaipur | SGPA 7.4 (Semester 4)</p>
+        <p className="text-white/60 text-[11px]">Maharani College, Jaipur | 5th Semester (Ongoing)</p>
       </div>
       <div>
         <p className="text-white text-sm font-semibold">Senior Secondary (Class XII)</p>
